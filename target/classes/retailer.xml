@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items xmlns="http://www.itemmaster.com/feed/item">
+    <item type="grocery">
+        <companyTrackingId id="280000021762" name="PRG ALFR W ROTINI" />
+        <ecommerceTitle>Prego® Ready Meals Creamy Three Cheese Alfredo Rotini, 9 oz.</ecommerceTitle>
+        <ecommerceDescription>
+            <entry lang="en-US">Ecommerce description.</entry>
+        </ecommerceDescription>
+        <frontOfPackageText>Prego™ Ready Meals Creamy Three Cheese Alfredo Rotini is a tasty option for your busy lifestyle. Just pop the convenient pouch in the microwave, and in 60 seconds you’ll be enjoying tender rotini pasta in a rich and creamy Alfredo sauce seasoned with black pepper. Delicious!</frontOfPackageText>
+        <restOfPackageText>Microwavable in 60 seconds.
+            For A Southwest Twist, Try Pace® Ready Meals!</restOfPackageText>
+        <productCodes>
+            <productCode type="GTIN">00051000217622</productCode>
+        </productCodes>
+        <manufacturerId>6dfd9a70-ef37-11de-82fb-00505695235f</manufacturerId>
+        <categoryId>10000057</categoryId>
+        <privateLabelItem>N</privateLabelItem>
+        <media>
+            <medium view="A1A3">
+                <url>http://images.salsify.com/image/upload/s--NB6esAsV--/w_2500,h_2500,dn_300/xffwbyahgnlip6uotcll.tif</url>
+            </medium>
+            <medium view="A1L1">
+                <url>http://images.salsify.com/image/upload/s--NB6esAsV--/w_2500,h_2500,dn_300/xffwbyahgnlip6uotcll.tif</url>
+            </medium>
+            <medium view="A1R1">
+                <url>http://images.salsify.com/image/upload/s--NB6esAsV--/w_2500,h_2500,dn_300/xffwbyahgnlip6uotcll.tif</url>
+            </medium>
+        </media>
+        <packageData type="Product" approximation="Y">
+            <length>
+                <measure>2.756</measure>
+                <uom>IN</uom>
+            </length>
+            <height>
+                <measure>5.906</measure>
+                <uom>IN</uom>
+            </height>
+            <width>
+                <measure>5.906</measure>
+                <uom>IN</uom>
+            </width>
+            <weight>
+                <measure>9.322</measure>
+                <uom>OZ</uom>
+            </weight>
+            <unitsInPackage>1</unitsInPackage>
+            <packageType>POUCH</packageType>
+            <packageSize>
+                <measure>1.0</measure>
+                <uom>PACKAGE</uom>
+            </packageSize>
+            <netWeight>
+                <measure>8.995</measure>
+                <uom>OZ</uom>
+            </netWeight>
+            <recyclable>Y</recyclable>
+        </packageData>
+        <contentPlus>
+            <ecommerceDescription>
+                <entry lang="en-US">McCormick® Grill Mates Brown Sugar Box</entry>
+            </ecommerceDescription>
+            <bulletPoints>
+                <bulletPoint>Kids who love Star Wars™ will delight over our soup's fun character-shaped pasta!</bulletPoint>
+                <bulletPoint>Crafted with high-quality chicken in chicken broth and enriched shaped pasta</bulletPoint>
+                <bulletPoint>Made without artificial flavors, so parents like our soup as much as kids love its taste</bulletPoint>
+                <bulletPoint>May the M'm M'm Good® be with you!</bulletPoint>
+            </bulletPoints>
+        </contentPlus>
+        <manufacturerContent>
+            <retailers id="4c401d90-ea5b-11e2-a135-005056ab0051">
+                <contentPlus>
+                    <sellCopy>sell copy</sellCopy>
+                    <ecommerceDescription>
+                        <entry lang="en-US">ecommerce desc</entry>
+                    </ecommerceDescription>
+                    <bulletPoints>
+                        <bulletPoint>bullet point 1</bulletPoint>
+                    </bulletPoints>
+                </contentPlus>
+            </retailers>
+        </manufacturerContent>
+        <products>
+            <product type="grocery">
+                <description>It only takes one minute to prepare Prego™ Ready Meals Creamy Three Cheese Alfredo Rotini. Pop in the microwave and enjoy straight from the pouch.</description>
+                <brandId>e064dec1-de28-11e0-8c7c-005056957023</brandId>
+                <brandDescription>Prego®</brandDescription>
+                <manufacturerId>6dfd9a70-ef37-11de-82fb-00505695235f</manufacturerId>
+                <countryOfManufacturing>US</countryOfManufacturing>
+                <warnings>
+                    <warning>DO NOT PURCHASE IF OPENED OR PUNCTURED.</warning>
+                </warnings>
+                <directions>MICROWAVE: Microwave ovens vary. Time given is approximate. Uneven microwave heating may cause popping and/or movement of the pouch. 1. PLACE  UNOPENED, SELF-VENTING pouch standing upright in microwave. Heat on HIGH 1 min. or until hot. Careful, let stand in microwave 1 min. 2. REMOVE pouch from microwave using COOL TOUCH areas.  CAUTION: POUCH AND CONTENTS WILL BE HOT. 3. TEAR OPEN pouch. Stir well and enjoy right from pouch or pour into bowl. For convenience store oven (1700 watt), microwave on HIGH 30 seconds or until hot.</directions>
+                <isAerosol>N</isAerosol>
+                <isChemical>N</isChemical>
+                <isPesticide>N</isPesticide>
+                <hasBatteries>N</hasBatteries>
+                <containsMercury>N</containsMercury>
+                <hasFuelContainer>N</hasFuelContainer>
+                <containsPaperWood>N</containsPaperWood>
+                <compositeWoodCertificationCode>1</compositeWoodCertificationCode>
+                <hasExpiration>Y</hasExpiration>
+                <hasWarranty>N</hasWarranty>
+                <isProp65WarningRequired>N</isProp65WarningRequired>
+                <isTemperatureSensitive>N</isTemperatureSensitive>
+                <smallPartsWarnings>0</smallPartsWarnings>
+                <isControlledSubstance>N</isControlledSubstance>
+                <hasStateRestrictions>N</hasStateRestrictions>
+                <isNutritionFactsLabelRequired>Y</isNutritionFactsLabelRequired>
+                <grocery>
+                    <ingredients>INGREDIENTS: WATER, PASTA (WHEAT FLOUR, EGG WHITES), CREAM (MILK), PARMESAN CHEESE (PART-SKIM MILK, CULTURES, SALT, ENZYMES), MODIFIED FOOD STARCH, CHEDDAR CHEESE (MILK, CULTURES, SALT, ENZYMES), BUTTER (CREAM), CONTAINS LESS THAN 2% OF: CANOLA OIL, SUGAR, WHEY PROTEIN CONCENTRATE, SALT, PARMESAN CHEESE (MILK, CULTURES, SALT, ENZYMES), GRANULAR CHEESE (MILK, CULTURES, SALT, ENZYMES), YEAST EXTRACT, ROASTED GARLIC, COARSE GROUND BLACK PEPPER, WHEY, LACTIC ACID, ROMANO CHEESE (COW'S MILK, CULTURES, SALT, ENZYMES), SODIUM CITRATE.</ingredients>
+                    <foodRelatedIndicators>
+                        <temperatureIndicator>Shelf Stable</temperatureIndicator>
+                        <wheatFree>N</wheatFree>
+                        <glutenFree>N</glutenFree>
+                        <peanutFree>Y</peanutFree>
+                        <dairyFree>N</dairyFree>
+                        <eggFree>N</eggFree>
+                        <soyFree>Y</soyFree>
+                        <milkFree>N</milkFree>
+                        <crustaceanFree>Y</crustaceanFree>
+                        <fishFree>Y</fishFree>
+                        <nutFree>Y</nutFree>
+                    </foodRelatedIndicators>
+                    <nutritions>
+                        <nutrition sequence="1">
+                            <numberOfServings>1</numberOfServings>
+                            <servingSizes>
+                                <servingSize type="us">
+                                    <measure>9.0</measure>
+                                    <uom>oz</uom>
+                                </servingSize>
+                            </servingSizes>
+                            <servingSizeFullTxt>1 POUCH (255g)</servingSizeFullTxt>
+                            <energy>370</energy>
+                            <totalFat calories="170" dailyPct="29" uom="g">19</totalFat>
+                            <saturatedFat calories="" dailyPct="55" uom="g">11</saturatedFat>
+                            <transFat uom="g">1</transFat>
+                            <cholesterol dailyPct="23" uom="mg">70</cholesterol>
+                            <sodium dailyPct="35" uom="mg">850</sodium>
+                            <carbohydrates dailyPct="12" uom="g">37</carbohydrates>
+                            <dietaryFiber dailyPct="8" uom="g">2</dietaryFiber>
+                            <sugars uom="g">4</sugars>
+                            <protein dailyPct="" uom="g">13</protein>
+                            <dailyPercentOfVitaminA>8</dailyPercentOfVitaminA>
+                            <dailyPercentOfVitaminC>2</dailyPercentOfVitaminC>
+                            <dailyPercentOfCalcium>20</dailyPercentOfCalcium>
+                            <dailyPercentOfIron>4</dailyPercentOfIron>
+                        </nutrition>
+                    </nutritions>
+                </grocery>
+            </product>
+        </products>
+    </item>
+</items>

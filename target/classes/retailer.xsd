@@ -1,0 +1,1055 @@
+<?xml version="1.0"?>
+
+<xsd:schema version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.itemmaster.com/feed/item" targetNamespace="http://www.itemmaster.com/feed/item" elementFormDefault="qualified">
+
+    <xsd:element name="items">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="item" type="FeedItemType" minOccurs="0" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="FeedItemType">
+        <xsd:sequence>
+            <xsd:element name="companyTrackingId" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:string">
+                            <xsd:attribute name="id" type="xsd:string" use="required" />
+                            <xsd:attribute name="name" type="xsd:string" use="required" />
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ecommerceTitle">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="ecommerceDescription" type="LocalizedStringType">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Factual prose product description that describes the item.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="frontOfPackageText" type="xsd:string" minOccurs="0" />
+            <xsd:element name="restOfPackageText" type="xsd:string" minOccurs="0" />
+            <xsd:element ref="productCodes" />
+            <xsd:element name="manufacturerId">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string" >
+                        <xsd:minLength value="36" />
+                        <xsd:maxLength value="36" />
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="categoryId">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string" >
+                        <xsd:minLength value="2" />
+                        <xsd:maxLength value="16" />
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="privateLabelItem" type="YesNoIndicatorType" minOccurs="0" default="N"/>
+            <xsd:element name="distributorId" type="xsd:string" minOccurs="0" />
+            <xsd:element name="importerId" type="xsd:string" minOccurs="0" />
+            <xsd:element ref="media" />
+            <xsd:element ref="packageData" />
+            <xsd:element ref="planogramData" minOccurs="0" />
+            <xsd:element name="packageManufacturer" type="CompanyDetails" minOccurs="0" />
+            <xsd:element name="packageDistributor" type="CompanyDetails" minOccurs="0" />
+            <xsd:element name="packageImporter" type="CompanyDetails" minOccurs="0" />
+            <xsd:element name="contentPlus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="images" type="CustomMedia" minOccurs="0" maxOccurs="unbounded"/>
+                        <xsd:element name="logos" type="CustomMedia" minOccurs="0" maxOccurs="unbounded" />
+                        <xsd:element name="videos" type="CustomMedia" minOccurs="0" maxOccurs="unbounded"/>
+                        <xsd:element name="mobile" type="CustomMedia" minOccurs="0" maxOccurs="unbounded"/>
+                        <xsd:element name="other" type="CustomMedia" minOccurs="0" maxOccurs="unbounded"/>
+                        <xsd:element name="sellCopy" type="xsd:string" minOccurs="0"/>
+                        <xsd:element name="ecommerceDescription" type="LocalizedStringType" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    Manufacturer supplied e-commerce description
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="bulletPoints" minOccurs="0">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="bulletPoint" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="manufacturerContent" type="manufacturerContent"/>
+            <xsd:element ref="products" minOccurs="0" />
+            <xsd:element ref="attributes" minOccurs="0" />
+        </xsd:sequence>
+        <xsd:attribute name="type" type="ProductType" use="required" />
+    </xsd:complexType>
+
+    <xsd:complexType name="manufacturerContent">
+        <xsd:sequence>
+            <!-- <xsd:element minOccurs="0" name="default">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element form="unqualified" name="contentPlus" type="ContentPlus"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element> -->
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="retailers" type="Retailer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="contentPlus">
+        <xsd:sequence>
+            <xsd:element name="images" type="CustomMedia" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="logos" type="CustomMedia" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="videos" type="CustomMedia" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="mobile" type="CustomMedia" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="other" type="CustomMedia" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="sellCopy" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ecommerceDescription" type="LocalizedStringType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Manufacturer supplied e-commerce description
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bulletPoints" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="bulletPoint" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Retailer">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="contentPlus" type="contentPlus"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:string" use="required" />
+    </xsd:complexType>
+
+    <xsd:element name="productCodes">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="productCode" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:simpleContent>
+                            <xsd:extension base="xsd:string">
+                                <xsd:attribute name="type" type="ProductCodeType" use="required" />
+                            </xsd:extension>
+                        </xsd:simpleContent>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="media">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="medium" minOccurs="1" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="url" type="xsd:anyURI" />
+                            <xsd:element name="path" type="xsd:string" minOccurs="0">
+                                <xsd:annotation>
+                                    <xsd:documentation>
+                                        To maintain path of the downloaded image. Not for end user.
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:element>
+                        </xsd:sequence>
+                        <xsd:attribute name="view" type="ViewType" use="required" />
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="packageData">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="length" type="DimensionalMeasurementType" />
+                <xsd:element name="height" type="DimensionalMeasurementType" />
+                <xsd:element name="width" type="DimensionalMeasurementType" />
+                <xsd:element name="weight" type="WeightMeasurementType" />
+                <xsd:element name="unitsInPackage" type="xsd:int" />
+                <xsd:element name="packageType" type="xsd:string" />
+                <xsd:element name="packageSize" type="PackageMeasurementType" />
+                <xsd:element name="dryWeight" type="WeightMeasurementType" minOccurs="0" />
+                <xsd:element name="netWeight" type="WeightMeasurementType" minOccurs="0" />
+                <xsd:element name="information" type="xsd:string" minOccurs="0" />
+                <xsd:element name="recyclable" type="YesNoIndicatorType" minOccurs="0" />
+            </xsd:sequence>
+            <xsd:attribute name="type" type="PackageDataType" use="required" />
+            <xsd:attribute name="approximation" type="YesNoIndicatorType" default="Y"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="planogramData">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="depthCount" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="widthCount" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="heightCount" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="depthNesting" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="verticalNesting" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="displayDepth" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="displayHeight" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="displayWidth" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="divisionName" type="xsd:string" minOccurs="0" />
+                <xsd:element name="dualNesting" type="xsd:string" minOccurs="0" />
+                <xsd:element name="multipleShelfFacings" type="xsd:integer" minOccurs="0" />
+                <xsd:element name="pegDown" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="pegRight" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="trayCount" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="trayDepth" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="trayWidth" type="xsd:decimal" minOccurs="0" />
+                <xsd:element name="trayHeight" type="xsd:decimal" minOccurs="0" />
+            </xsd:sequence>
+            <xsd:attribute name="shelfManFlag" type="YesNoIndicatorType" use="optional" />
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="attributes">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="attribute" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="name" type="xsd:string" />
+                            <xsd:element name="value" type="xsd:string" />
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="products">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="product" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="description" type="xsd:string" />
+                            <xsd:element name="distributorId" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="importerId" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="brandId">
+                                <xsd:simpleType>
+                                    <xsd:restriction base="xsd:string" >
+                                        <xsd:minLength value="36" />
+                                        <xsd:maxLength value="36" />
+                                    </xsd:restriction>
+                                </xsd:simpleType>
+                            </xsd:element>
+                            <xsd:element name="subBrands" minOccurs="0">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="subBrand" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="brandDescription" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="secondaryBrandDescription" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="manufacturerId" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="line" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="variety" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="seasonal" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="countryOfManufacturing" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="warnings" minOccurs="0">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="warning" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="drugInteractions" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="directions" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="indications" type="xsd:string" minOccurs="0" />
+                            <!--START ALTS-->
+                            <xsd:element name="isAerosol" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="isChemical" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="isPesticide" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="hasBatteries" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="containsMercury" type="YesNoIndicatorType" minOccurs="0"/>
+                            <xsd:element name="hasFuelContainer" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="containsPaperWood" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="compositeWoodCertificationCode" type="compositeWoodType"/>
+                            <xsd:element name="hasExpiration" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="hasWarranty" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="isProp65WarningRequired" type="YesNoIndicatorType"/>
+                            <xsd:element name="isTemperatureSensitive" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="smallPartsWarnings" type="smallPartWarningsType"/>
+                            <xsd:element name="isControlledSubstance" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="hasStateRestrictions" type="YesNoIndicatorType" minOccurs="0"/>
+                            <xsd:element name="isNutritionFactsLabelRequired" type="YesNoIndicatorType" minOccurs="0" />
+                            <xsd:element name="isBoxTopsForEducationEligible" type="YesNoIndicatorType" minOccurs="0" />
+                            <!--END ALTS-->
+                            <xsd:element name="grocery" type="GroceryType" minOccurs="0" />
+                        </xsd:sequence>
+                        <xsd:attribute name="type" type="ProductType" use="required" />
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="GroceryType">
+        <xsd:sequence>
+            <xsd:element name="ndcCode" type="xsd:string" minOccurs="0" />
+            <xsd:element name="npnCode" type="xsd:string" minOccurs="0" />
+            <xsd:element name="dinCode" type="xsd:string" minOccurs="0" />
+            <xsd:element name="alcoholByVolumePercent" type="xsd:string" minOccurs="0" />
+            <xsd:element name="alcoholType" type="xsd:string" minOccurs="0" />
+            <xsd:element name="ingredients" type="xsd:string" minOccurs="0" />
+            <xsd:element name="vitaminsAndMinerals" type="xsd:string" minOccurs="0" />
+            <xsd:element name="nutritionalClaims" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="fatFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="goodSourceOfFiber" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="lowFat" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="lowSodium" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="sugarFree" type="YesNoIndicatorType" minOccurs="0" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="kosherCodes" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="kosherCode" type="xsd:int" minOccurs="0" maxOccurs="unbounded" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="containerRefunds" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="containerRefund" minOccurs="1" maxOccurs="unbounded">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="locale" type="xsd:string" />
+                                    <xsd:element name="amount" type="xsd:string" />
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="certifications" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="certificate" type="xsd:int" minOccurs="0" maxOccurs="unbounded" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="recipes" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="recipe" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="foodRelatedIndicators" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="vegan" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="vegetarian" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="lactoseFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="flavor" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="antibioticFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="temperatureIndicator" type="TemperatureType" />
+                        <xsd:element name="wheatFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="glutenFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="hormoneFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="natural" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="nitratesFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="nitritesFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="organic" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="peanutFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="readyToCook" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="readyToHeat" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="dairyFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="eggFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="nonGmo" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="kosher" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="shellfishFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="soyFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="milkFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="crustaceanFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="fishFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="sesameFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="nutFree" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="halal" type="YesNoIndicatorType" minOccurs="0" />
+                        <xsd:element name="paleo" type="YesNoIndicatorType" minOccurs="0" />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="recycleCodes" type="xsd:string" minOccurs="0" />
+            <xsd:element name="nutritions" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="nutrition" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="title" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="numberServedInPackage" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="numberOfServings" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="servingSizes" minOccurs="0">
+                                        <xsd:complexType>
+                                            <xsd:sequence>
+                                                <xsd:element name="servingSize" minOccurs="0" maxOccurs="unbounded">
+                                                    <xsd:complexType>
+                                                        <xsd:complexContent>
+                                                            <xsd:extension base="MeasurementType">
+                                                                <xsd:attribute name="type" type="MeasurementUomType" use="required" />
+                                                            </xsd:extension>
+                                                        </xsd:complexContent>
+                                                    </xsd:complexType>
+                                                </xsd:element>
+                                            </xsd:sequence>
+                                        </xsd:complexType>
+                                    </xsd:element>
+                                    <xsd:element name="servingSizeFullTxt" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="raccAmt" type="MeasurementType" minOccurs="0" />
+                                    <xsd:element name="energy" type="xsd:integer" minOccurs="0" />
+                                    <xsd:element name="totalFat" type="UomDailyPctCaloriesType" minOccurs="0" />
+                                    <xsd:element name="saturatedFat" type="UomDailyPctCaloriesType" minOccurs="0" />
+                                    <xsd:element name="polyunsaturatedFat" type="UomDailyPctType" minOccurs="0" />
+                                    <xsd:element name="monounsaturatedFat" type="UomDailyPctType" minOccurs="0" />
+                                    <xsd:element name="transFat" type="UomType" minOccurs="0" />
+                                    <xsd:element name="cholesterol" type="UomDailyPctType" minOccurs="0" />
+                                    <xsd:element name="sodium" type="UomDailyPctType" minOccurs="0" />
+                                    <xsd:element name="potassium" type="UomDailyPctType" minOccurs="0" />
+                                    <xsd:element name="carbohydrates" type="UomDailyPctType" minOccurs="0" />
+                                    <xsd:element name="dietaryFiber" type="UomDailyPctType" minOccurs="0" />
+                                    <xsd:element name="soluableFiber" type="UomType" minOccurs="0" />
+                                    <xsd:element name="insoluableFiber" type="UomType" minOccurs="0" />
+                                    <xsd:element name="sugars" type="UomType" minOccurs="0" />
+                                    <xsd:element name="addedSugars" type="UomType" minOccurs="0" />
+                                    <xsd:element name="sugarAlchohol" type="UomType" minOccurs="0" />
+                                    <xsd:element name="otherCarbohydrates" type="UomType" minOccurs="0" />
+                                    <xsd:element name="protein" type="UomDailyPctType" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfVitaminA" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfVitaminC" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfCalcium" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfIron" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfCopper" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfFolicAcid" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfIodine" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfMagnesium" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfNiacin" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfPhosphorous" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfRiboflavin" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfThiamin" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfVitaminB12" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfVitaminB6" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfVitaminD" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfVitaminE" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfVitaminZinc" type="xsd:string" minOccurs="0" />
+                                    <xsd:element name="dailyPercentOfAddedSugars" type="xsd:string" minOccurs="0" />
+                                </xsd:sequence>
+                                <xsd:attribute name="sequence" type="xsd:int" use="required" />
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="ProductType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="grocery" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="ProductCodeType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="GTIN" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="PackageDataType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Product" />
+            <xsd:enumeration value="Tray Pack" />
+            <xsd:enumeration value="Case" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="RecycleCodesType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Y" />
+            <xsd:enumeration value="N" />
+            <xsd:enumeration value="1" />
+            <xsd:enumeration value="2" />
+            <xsd:enumeration value="3" />
+            <xsd:enumeration value="4" />
+            <xsd:enumeration value="5" />
+            <xsd:enumeration value="6" />
+            <xsd:enumeration value="7" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="smallPartWarningsType">
+        <xsd:restriction base="xsd:integer">
+            <xsd:enumeration value="0" />
+            <xsd:enumeration value="1" />
+            <xsd:enumeration value="2" />
+            <xsd:enumeration value="3" />
+            <xsd:enumeration value="4" />
+            <xsd:enumeration value="5" />
+            <xsd:enumeration value="6" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="compositeWoodType">
+        <xsd:restriction base="xsd:integer">
+            <xsd:enumeration value="1" />
+            <xsd:enumeration value="2" />
+            <xsd:enumeration value="3" />
+            <xsd:enumeration value="4" />
+            <xsd:enumeration value="5" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="CategoryType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="GS1" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="MeasurementType">
+        <xsd:sequence>
+            <xsd:element name="measure" type="xsd:double" />
+            <xsd:element name="uom" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="DimensionalMeasurementType">
+        <xsd:sequence>
+            <xsd:element name="measure" type="xsd:double" />
+            <xsd:element name="uom" type="DimensionalMeasurementUomType" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WeightMeasurementType">
+        <xsd:sequence>
+            <xsd:element name="measure" type="xsd:double" />
+            <xsd:element name="uom" type="WeightMeasurementUomType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="LiquidMeasurementType">
+        <xsd:sequence>
+            <xsd:element name="measure" type="xsd:double" />
+            <xsd:element name="uom" type="LiquidMeasurementUomType" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PackageMeasurementType">
+        <xsd:sequence>
+            <xsd:element name="measure" type="xsd:double" />
+            <xsd:element name="uom" type="PackageMeasurementUomType" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="DimensionalMeasurementUomType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="FT" />
+            <xsd:enumeration value="IN" />
+            <xsd:enumeration value="CM" />
+            <xsd:enumeration value="YARDS" />
+            <xsd:enumeration value="SQ FT" />
+            <xsd:enumeration value="SQ IN" />
+            <xsd:enumeration value="SQ CM" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WeightMeasurementUomType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="OZ" />
+            <xsd:enumeration value="LB" />
+            <xsd:enumeration value="MG" />
+            <xsd:enumeration value="G" />
+            <xsd:enumeration value="KG" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="LiquidMeasurementUomType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="FL OZ" />
+            <xsd:enumeration value="GAL" />
+            <xsd:enumeration value="PT" />
+            <xsd:enumeration value="QT" />
+            <xsd:enumeration value="ML" />
+            <xsd:enumeration value="L" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="PackageMeasurementUomType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="BAR" />
+            <xsd:enumeration value="BOX" />
+            <xsd:enumeration value="CT" />
+            <xsd:enumeration value="CUP" />
+            <xsd:enumeration value="FL OZ" />
+            <xsd:enumeration value="FT" />
+            <xsd:enumeration value="G" />
+            <xsd:enumeration value="GAL" />
+            <xsd:enumeration value="IN" />
+            <xsd:enumeration value="KIT" />
+            <xsd:enumeration value="KG" />
+            <xsd:enumeration value="KT" />
+            <xsd:enumeration value="L" />
+            <xsd:enumeration value="LB" />
+            <xsd:enumeration value="MG" />
+            <xsd:enumeration value="ML" />
+            <xsd:enumeration value="OZ" />
+            <xsd:enumeration value="PACK" />
+            <xsd:enumeration value="PACKAGE" />
+            <xsd:enumeration value="PIECE(S)" />
+            <xsd:enumeration value="PR" />
+            <xsd:enumeration value="PT" />
+            <xsd:enumeration value="QT" />
+            <xsd:enumeration value="SQ FT" />
+            <xsd:enumeration value="SQ IN" />
+            <xsd:enumeration value="TBS" />
+            <xsd:enumeration value="YARDS" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="MeasurementUomType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="" />
+            <xsd:enumeration value="us" />
+            <xsd:enumeration value="metric" />
+            <xsd:enumeration value="other" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="ValueWithIdType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="id" type="xsd:string" use="required" />
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="YesNoIndicatorType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Y" />
+            <xsd:enumeration value="N" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="NutritionUomType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="kg" />
+            <xsd:enumeration value="g" />
+            <xsd:enumeration value="mg" />
+            <xsd:enumeration value="mcg" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="UomType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="uom" type="NutritionUomType" use="required" />
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="UomDailyPctType">
+        <xsd:simpleContent>
+            <xsd:extension base="UomType">
+                <xsd:attribute name="dailyPct" type="xsd:string" />
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="UomDailyPctCaloriesType">
+        <xsd:simpleContent>
+            <xsd:extension base="UomDailyPctType">
+                <xsd:attribute name="calories" type="xsd:string" />
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="TemperatureType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Frozen" />
+            <xsd:enumeration value="Chilled" />
+            <xsd:enumeration value="Perishable" />
+            <xsd:enumeration value="Shelf Stable" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="LocalizedStringType">
+        <xsd:sequence>
+            <xsd:element name="entry" >
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:string">
+                            <xsd:attribute name="lang" type="LanguageValue" />
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="LanguageValue">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="en-US" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="CompanyDetails">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string" minOccurs="0" />
+            <xsd:element name="address" type="xsd:string" minOccurs="0" />
+            <xsd:element name="address2" type="xsd:string" minOccurs="0" />
+            <xsd:element name="city" type="xsd:string" minOccurs="0" />
+            <xsd:element name="state" type="xsd:string" minOccurs="0" />
+            <xsd:element name="zip" type="xsd:string" minOccurs="0" />
+            <xsd:element name="country" type="xsd:string" minOccurs="0" />
+            <xsd:element name="email" type="xsd:string" minOccurs="0" />
+            <xsd:element name="phone" type="xsd:string" minOccurs="0" />
+            <xsd:element name="url" type="xsd:anyURI" minOccurs="0" />
+            <xsd:element name="fax" type="xsd:string" minOccurs="0" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CustomMedia">
+        <xsd:sequence>
+            <xsd:element name="medium" >
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="url" type="xsd:anyURI" />
+                        <xsd:element name="path" type="xsd:string" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>
+                                    To maintain path of the downloaded image. Not for end user.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="description" type="LocalizedStringType"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="ViewType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="A1C1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Planogram Front.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A2C1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Planogram Left.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A3C1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Planogram Top.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A8C1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Planogram Right.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A7C1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Planogram Back.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A9C1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Planogram Bottom.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A1N1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        N Slot For Planogram Front.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A2N1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        N Slot For Planogram Left.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A3N1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        N Slot For Planogram Top.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A8N1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        N Slot For Planogram Right.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A7N1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        N Slot For Planogram Back.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A9N1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        N Slot For Planogram Bottom.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A1L1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Advertising Front Side Left Angle.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A1R1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Advertising Front Side Right Angle.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A1A3">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Advertising Front.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DATA">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Item Data Images.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OTHER">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Any other Media.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+
+            <xsd:enumeration value="MOBL">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        ItemMaster Mobile Image
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+
+            <!-- Non-Standard Images provided by the customers -->
+            <xsd:enumeration value="OOP">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Out of Package
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OOPF">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Out of Package Fresh
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GLAMOUR">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Glamour
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FAMILY">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Family
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SCALE">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        SCALE
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FACTS">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Image of the "Nutrition Facts" "Drug Facts" or "Supplement Facts" panel on the product packaging.
+                        If the product is a multipack and includes multiple facts panels, this image should combine all of them.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BARCODE">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        An image of the bar code for the item, it should be printable and scannable.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="INGREDIENTS">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        An image with text listing the ingredients of the product if the product discloses ingredients.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FULLLABEL">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        An image containing the combination of the facts panel and ingredients for the product.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Legacy Alternate Images.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image 1.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT2">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image 2.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT3">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image 3.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT4">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image 4.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT5">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image 5.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT6">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image 6.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT7">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image 7.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT8">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image 8.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT9">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image 9.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ALT10">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image 10.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A1L1_ALT1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image Front Side Left Angle.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A1A3_ALT1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image Front Side.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="A1R1_ALT1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Alternate Image Front Side Right Angle.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>
